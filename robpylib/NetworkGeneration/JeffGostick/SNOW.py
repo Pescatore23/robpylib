@@ -26,7 +26,7 @@ from skimage.morphology import watershed
 from skimage.feature import peak_local_max
 from skimage.segmentation import find_boundaries
 from skimage import io
-import RobPyLib
+import robpylib
 
 
 
@@ -201,7 +201,7 @@ if __name__ == '__main__':
     owd=os.getcwd()
     os.chdir(hullpath)
     filetype=np.uint8
-    convexhull=RobPyLib.CommonFunctions.ImportExport.ReadStack(hullnames,'.tif',filetype,indexmax)
+    convexhull=robpylib.CommonFunctions.ImportExport.ReadStack(hullnames,'.tif',filetype,indexmax)
     os.chdir(owd)
     im=VoidSpace*convexhull
     

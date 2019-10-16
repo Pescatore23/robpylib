@@ -1,6 +1,7 @@
-from distutils.core import setup
-setup(name='RobPyLib',
+from setuptools import setup
+
+setup(name='robpylib',
       version='1.0',
-      packages=['RobPyLib'],
-	  install_requires=['numpy','os','skimage','scipy', 'csv'],
+      packages=['robpylib'],
+      install_requires=['numpy','scikit-image','scipy'],
       )
