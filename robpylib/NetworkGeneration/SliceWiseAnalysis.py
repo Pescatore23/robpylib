@@ -8,7 +8,7 @@ Second part of statistical pore space analysis. Try to merge into one file
 """
 
 import numpy as np
-import RobPyLib
+import robpylib
 
 
 def poreAnalysis(Stack, Hull ,whiteonblack=True):

@@ -1,4 +1,4 @@
-import RobPyLib
+import robpylib
 import numpy as np
 import skimage.morphology
 from scipy.ndimage import morphology
