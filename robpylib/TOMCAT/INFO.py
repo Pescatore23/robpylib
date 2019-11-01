@@ -44,5 +44,4 @@ good_samples = very_good_samples + questionable_sample
 time_limit = {'T3_100_10_III': 344,
               'T3_300_5': 229,
               'T3_100_7': 206,
-              'T3_100_10': 232        
-        }
+              'T3_100_10': 232}
