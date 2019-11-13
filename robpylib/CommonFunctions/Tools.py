@@ -96,7 +96,7 @@ def cylinder_coords(x, y, x0=0, y0=0):
 
 
 def rendering(threshold, transitions, name, outfolder, label = False, pore_object = False):
-    
+#    for now, only works with matplotlib 3.0.3
     t = threshold
     if np.any(transitions==t):
         if not os.path.exists(os.path.join(outfolder, ''.join([str(name),'.png']))):
