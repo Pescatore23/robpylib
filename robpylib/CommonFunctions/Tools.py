@@ -10,6 +10,7 @@ from scipy import ndimage as ndi
 import os
 from skimage import measure
 import matplotlib.pyplot as plt
+plt.ioff()
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
 def low_pass_rule(x,freq,band):
