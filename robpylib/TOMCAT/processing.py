@@ -126,7 +126,7 @@ def merge_transformation_matrices(matFolder):
     res_trans_mat=np.mean(mats, axis=0)
     return res_trans_mat
 
-def register(Tstack, z, matFolder, reference = 'previous', trans_mat_flag = False, trans_mat = None):
+def register(Tstack, z, matFolder, reference = 'previous', trans_mat_flag = False, trans_mat = None, return_mat = False):
     """
     
 
@@ -157,7 +157,11 @@ def register(Tstack, z, matFolder, reference = 'previous', trans_mat_flag = Fals
     else:
         Tstack, trans_mat = get_transformation(Tstack, reference)
         np.save(os.path.join(matFolder,''.join(['trans_mat_z_',str(z),'.npy'])),trans_mat)
-    return Tstack
+    
+    if return_mat:
+        return Tstack, trans_mat
+    else:
+        return Tstack
 
 #02_sgementation time series
 
