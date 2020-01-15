@@ -45,3 +45,8 @@ time_limit = {'T3_100_10_III': 344,
               'T3_300_5': 229,
               'T3_100_7': 206,
               'T3_100_10': 232}
+
+# samples where masking went well and don't need to be repeated (only segmentation, registration is fine)
+interlace_good_samples = ['T4_025_1_III', 'T4_100_4', 'T4_300_2_II', 'T4_300_4_III', 'T4_300_5_III',
+                          'T4_100_2_III', 'T4_300_III']
+    
