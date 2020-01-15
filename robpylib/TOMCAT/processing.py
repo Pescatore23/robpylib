@@ -47,8 +47,6 @@ def intensity_correction(Tstack):
     
     return Tstack
 
-# Tstack needs to be in shape [t,x,y], use shape='t_x' for reading and writing Tstack
-# pystackreg wqorks with frame as the first index and also transformation matrices are stored this way    
 
 # 01 rigid registration
 def get_transformation(Tstack, reference):
