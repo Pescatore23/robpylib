@@ -195,7 +195,28 @@ def label_image_by_horizontal_slices(image, thickness=50):
         label_image[:,:,start:end] = sub_label
         
     return label_image
-        
+ 
+
+def neighbour_search(label, im, struct=cube):
+    mask = im==label
+    mask = ndimage.binary_dilation(input = mask, structure = struct(3))
+    neighbours = np.unique(im[mask])[1:]
+    return neighbours      
+
+def adjacency_matrix(label_im):
+    size = label_im.max()+1
+    labels = np.unique(label_im)[1:]
+    adj_mat = np.zeros([size,size], dtype=np.bool)
+ 
+    results = Parallel(n_jobs=num_cores)(delayed(neighbour_search)(label, label_im) for label in labels)
+    
+    for (label, result) in zip(labels, results):
+        adj_mat[label, result] = True
+    
+    # make sure that matrix is symmetric (as it should be)
+    adj_mat = np.maximum(adj_mat, adj_mat.transpose())
+    
+    return adj_mat
 
 #test           
            
