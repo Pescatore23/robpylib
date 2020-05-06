@@ -238,7 +238,6 @@ write image stack
     
 def WriteStack(foldername,name,path,Stack):
 #    print('Writing to file...')
-    print("Calling the Guardian...")
     owd=os.getcwd()
     folderpath=''.join([path,'\\',foldername])
     if not os.path.exists(folderpath):
@@ -250,46 +249,20 @@ def WriteStack(foldername,name,path,Stack):
     for z in range(indexmax):
 #        if z % 500 == 0:
 #            print(z,' slices stored')
-        if z  == 750:
-            print('Those who travel')
-        if z == 1250:
-            print('far away from home')
-        if z == 1600:
-            print("they'll never return")
-        if z == 1900:
-            print("And those who cross")
-        if z == 2250:
-            print("the seas of hope, they")
-        if z == 2750:
-            print("all will burn") #credit to Ensiferum (Guardians of Fate)
         imageio.imsave(''.join([name,index[z],'.tif']), Stack[:,:,z])
-    print('Images of fate guarded')
     os.chdir(owd)
     
 
 
 def WriteStackNew(outfolder,imlist,Stack, track=True):
-    if track==True: print("Calling the Guardian...")
+
     if not os.path.exists(outfolder):
         os.makedirs(outfolder)
     z=0
     for im in imlist:
-        if track==True:
-            if z  == 750:
-                print('Those who travel')
-            if z == 1250:
-                print('far away from home')
-            if z == 1600:
-                print("they'll never return")
-            if z == 1900:
-                print("And those who cross")
-            if z == 2250:
-                print("the seas of hope, they")
-            if z == 2750:
-                print("all will burn") #credit to Ensiferum (Guardians of Fate)
         imageio.imsave(''.join([outfolder,"\\",im]), Stack[:,:,z])
         z=z+1
-    if track==True: print('Images of fate guarded')
+
 
     
 """
