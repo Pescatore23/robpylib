@@ -12,6 +12,7 @@ from skimage import measure
 import matplotlib.pyplot as plt
 plt.ioff()
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+from scipy.interpolate import interp1d
 
 def low_pass_rule(x,freq,band):
     if abs(freq) > band:
@@ -143,3 +144,33 @@ def rendering(threshold, transitions, name, outfolder, label = False, pore_objec
             fig.clf()
             ax.cla()
             plt.close(fig)
+            
+            
+            
+            
+def weighted_ecdf(data, weight = False):
+    """
+    input: 1D arrays of data and corresponding weights
+    sets weight to if no weights given
+    """
+    if not np.any(weight):
+        weight = np.ones(len(data))
+    
+    sorting = np.argsort(data)
+    x = data[sorting]
+    weight = weight[sorting]
+    y = np.cumsum(weight)/weight.sum()
+     
+    # clean duplicates
+    
+    x_clean = np.unique(x)
+    y_clean = np.zeros(x_clean.shape)
+    
+    for i in range(len(x_clean)):
+        y_clean[i] = y[x==x_clean[i]].max()
+    return x_clean, y_clean
+
+def cdf(ecdf_x, ecdf_y):
+    f = interp1d(ecdf_x, ecdf_y, fill_value = 'extrapolate')
+    return f
+
