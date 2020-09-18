@@ -47,7 +47,7 @@ def ReadStack(filemask,ext,filetype,indexmax):
     return Stack
 
 
-def ReadStackNew(folder, filetype=np.uint16, track=True):
+def ReadStackNew(folder, filetype=np.uint16, track=True, time_request = False):
     imlist=os.listdir(folder)
     if 'Thumbs.db' in imlist: imlist.remove('Thumbs.db')
     stacksize=len(imlist)
@@ -55,15 +55,20 @@ def ReadStackNew(folder, filetype=np.uint16, track=True):
     shp=np.shape(testim)
     Stack = np.zeros([shp[0],shp[1],stacksize],dtype=filetype)
     z=0
+    timestamps = np.zeros(len(imlist))
     for im in imlist:
         if track==True and z % 500 == 0:
             print(z,' slices loaded')
         img = io.imread(''.join([folder,"/",im]))
+        if time_request: timestamps[z] = os.getmtime(''.join([folder,"/",im]))
         Stack[:,:,z] = img
         z=z+1
     if track == True: print(z,' slices loaded')
 #    imlist=imlist[imlist!='Thumbs.db']
-    return Stack, imlist
+    if time_request:
+        return Stack, imlist, timestamps    
+    else:
+        return Stack, imlist
 
 
 
