@@ -60,7 +60,7 @@ def ReadStackNew(folder, filetype=np.uint16, track=True, time_request = False):
         if track==True and z % 500 == 0:
             print(z,' slices loaded')
         img = io.imread(''.join([folder,"/",im]))
-        if time_request: timestamps[z] = os.getmtime(''.join([folder,"/",im]))
+        if time_request: timestamps[z] = os.path.getmtime(''.join([folder,"/",im]))
         Stack[:,:,z] = img
         z=z+1
     if track == True: print(z,' slices loaded')
