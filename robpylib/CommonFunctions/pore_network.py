@@ -25,7 +25,7 @@ import multiprocessing as mp
 #dask.config.set({'array.chunk_size': chunkstring}) 
 #client = Client(clientlocation, processes = False)
 
-num_cores = mp.cpu_count()
+# num_cores = mp.cpu_count()
 
 def extend_bounding_box(s, shape, pad=3):
     a = []
@@ -203,7 +203,7 @@ def neighbour_search(label, im, struct=cube):
     neighbours = np.unique(im[mask])[1:]
     return neighbours      
 
-def adjacency_matrix(label_im):
+def adjacency_matrix(label_im, num_cores=4):
     size = label_im.max()+1
     labels = np.unique(label_im)[1:]
     adj_mat = np.zeros([size,size], dtype=np.bool)
