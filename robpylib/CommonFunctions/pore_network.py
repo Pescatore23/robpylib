@@ -199,7 +199,7 @@ def label_image_by_horizontal_slices(image, thickness=50):
 
 def neighbour_search(label, im, struct=cube):
     mask = im==label
-    mask = ndimage.binary_dilation(input = mask, structure = struct(3))
+    mask = ndimage.binary_dilation(input = mask, structure = struct(6))
     neighbours = np.unique(im[mask])[1:]
     return neighbours      
 
