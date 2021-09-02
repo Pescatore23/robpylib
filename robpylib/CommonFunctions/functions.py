@@ -8,7 +8,7 @@ Created on Wed May 27 19:16:53 2020
 import numpy as np
 import scipy as sp
 
-def R_squared(x,y, func, *p):
+def R_squared(x,y, func, p):
     R = 0
     y_mean = np.mean(y)
     if y_mean > 0:
