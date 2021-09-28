@@ -265,7 +265,9 @@ def WriteStackNew(outfolder,imlist,Stack, track=True):
         os.makedirs(outfolder)
     z=0
     for im in imlist:
-        imageio.imsave(''.join([outfolder,"\\",im]), Stack[:,:,z])
+        # imageio.imsave(''.join([outfolder,"\\",im]), Stack[:,:,z])
+        path = os.path.join(outfolder, im)
+        imageio.imsave(path, Stack[:,:,z])
         z=z+1
 
 
