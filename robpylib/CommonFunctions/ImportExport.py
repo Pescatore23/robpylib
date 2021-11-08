@@ -50,6 +50,7 @@ def ReadStack(filemask,ext,filetype,indexmax):
 def ReadStackNew(folder, filetype=np.uint16, track=True, time_request = False):
     imlist=os.listdir(folder)
     if 'Thumbs.db' in imlist: imlist.remove('Thumbs.db')
+    imlist.sort()
     stacksize=len(imlist)
     testim=io.imread(os.path.join(folder+'/'+imlist[0]))
     shp=np.shape(testim)
@@ -76,6 +77,7 @@ def ReadFitsStack(folder, filetype=np.uint16, track=True):
     imlist=os.listdir(folder)
     if 'Thumbs.db' in imlist: imlist.remove('Thumbs.db')
     stacksize=len(imlist)
+    imlist.sort()
     test_im= fits.open(os.path.join(folder,imlist[0]))
     testim=test_im[0].data
     timestamp=test_im[0].header['DATE']
@@ -105,6 +107,7 @@ def ReadFitsStack(folder, filetype=np.uint16, track=True):
 def ReadFloatTif(folder, filetype=np.float32, track=True):
     imlist=os.listdir(folder)
     if 'Thumbs.db' in imlist: imlist.remove('Thumbs.db')
+    imlist.sort()
     stacksize=len(imlist)
     testim=io.imread(os.path.join(folder+'/'+imlist[0]))
     shp=np.shape(testim)
