@@ -20,7 +20,7 @@ def store_graph_to_netcdf4(graph, path, attrs={}):
     data.to_netcdf(path)
     
     
-def reconstruct_grah_from_netcdf4(path):
+def reconstruct_graph_from_netcdf4(path):
     data = xr.load_dataset(path)
     nodes = data['nodes'].data
     mapping = {}
