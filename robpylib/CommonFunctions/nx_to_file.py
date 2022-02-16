@@ -15,7 +15,7 @@ def store_graph_to_netcdf4(graph, path, attrs={}):
     adj_matrix = nx.to_numpy_array(graph)
     nodes = graph.nodes()
     data = xr.Dataset({'adj_matrix': (['nodes', 'nodes'], adj_matrix)},
-                      coords= {'nodes': nodes*2})
+                      coords= {'nodes': nodes})
     data.attrs = attrs
     data.to_netcdf(path)
     
