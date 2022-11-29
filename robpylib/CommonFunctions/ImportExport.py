@@ -52,7 +52,7 @@ def ReadStackNew(folder, filetype=np.uint16, track=True, time_request = False):
     if 'Thumbs.db' in imlist: imlist.remove('Thumbs.db')
     # only load the tif files
     for im in imlist:
-        if not im[-3] == 'tif' or im[-4] == 'tiff':
+        if not im[-3:] == 'tif' and not im[-4:] == 'tiff':
             imlist.remove(im)
     imlist.sort()
     stacksize=len(imlist)
