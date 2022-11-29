@@ -50,6 +50,10 @@ def ReadStack(filemask,ext,filetype,indexmax):
 def ReadStackNew(folder, filetype=np.uint16, track=True, time_request = False):
     imlist=os.listdir(folder)
     if 'Thumbs.db' in imlist: imlist.remove('Thumbs.db')
+    # only load the tif files
+    for im in imlist:
+        if not im[-3] == 'tif' or im[-4] == 'tiff':
+            imlist.remove(im)
     imlist.sort()
     stacksize=len(imlist)
     testim=io.imread(os.path.join(folder+'/'+imlist[0]))
