@@ -67,6 +67,11 @@ def filter_outliers(data, radius=5, th=0.1):    #only 1D
             data[i]=med
     return data
 
+def Buterworth_like_filter(im, wc, n):
+    gain = 1/(1+(im**2/wc**2)**n)
+    im_filt = im*gain
+    return im_filt
+
 def capillary_number(v, mu=1, gamma=72.6): #water, mu[mPas] gamma[dyne/cm = mN/m]
     Ca=mu*v/gamma
     return Ca
