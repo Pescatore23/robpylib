@@ -67,8 +67,11 @@ def filter_outliers(data, radius=5, th=0.1):    #only 1D
             data[i]=med
     return data
 
-def Buterworth_like_filter(im, wc, n):
+def Butterworth_like_filter(im, wc, n, recover = 1):
+    im = np.float64(im)
     gain = 1/(1+(im**2/wc**2)**n)
+    g0 = 1-recover
+    gain = g0 + gain*recover
     im_filt = im*gain
     return im_filt
 
