@@ -401,4 +401,42 @@ def get_interlace_properties(sample):
     tension=m_app*g/linear_dens*10 #mN/tex
     
     return num_fibers, twist, tension
+
+# function to load nanotom vol file
+# path = "/mnt/nas_nanotomData/CT_Data_PSI/FR54/2022_10_03_cell007_test_after_op/2022_10_03_cell007_test_after_op_.vol"   #the .vol file path
+
+def load_nanotom(path, pcrSizeX = 0, pcrSizeY = 0, pcrSizeZ = 0):
+    
+    if pcrSizeX == 0 or pcrSizeY == 0 or pcrSizeZ == 0:
+        print('searching pcr file for image dimensions')
+    
+        pcrpath = path.split('.')[0]+'.pcr'
+        
+        if not os.path.exists(pcrpath):
+            print('pcr-file not found, please provide image dimensions manually')
+        else:
+            with open(pcrpath) as file:
+                lines = file.readlines()
+                
+            for line in lines:
+                splitline = line.split('=')
+                if splitline[0] == 'ROI_SizeX':
+                    pcrSizeX = int(splitline[1])
+                if splitline[0] == 'ROI_SizeY':
+                    pcrSizeY = int(splitline[1])
+                if splitline[0] == 'ROI_SizeZ':
+                    pcrSizeZ = int(splitline[1])
+                    
+    else:
+        print('dimension manually provided as '+str(pcrSizeX)+'x'+str(pcrSizeY)+'x'+str(pcrSizeY))
+        
+    print('dimensions considered as '+str(pcrSizeX)+'x'+str(pcrSizeY)+'x'+str(pcrSizeY))
+    
+    print('load the file')
+    
+    with open(path,'r') as file:
+        file.seek(0)
+        im = np.fromfile(file, dtype='<f4').reshape(pcrSizeX,pcrSizeY,pcrSizeZ, order ='F')
+        
+    return im    
     
