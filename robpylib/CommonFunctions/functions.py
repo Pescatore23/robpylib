@@ -67,7 +67,7 @@ def gaussian_cdf(x, sig, mu):
     return y
 
 def gaussian(x, sig, mu):
-    y = 1/np.sqrt(2*np.pi*sig**2)*np.exp(-(x-mu)**2/np.sqrt(2*sig**2))
+    y = 1/np.sqrt(2*np.pi*sig**2)*np.exp(-(x-mu)**2/2/sig**2)
     return y
 
 def guttenberg_richter_cdf(x, a, b):
