@@ -180,12 +180,13 @@ def OpenTimeStack(folder, imgNumber, orient='t_z'):
     scans=[]
     
     subfolders = [d for d in os.listdir(folder) if os.path.isdir(os.path.join(folder, d))]
+    subfolders.sort()
     
     testfolder = folder + "/" + subfolders[0]
-    folder_content=os.listdir(folder + "/" + subfolders[0])
+    folder_content=os.listdir(os.path.join(folder,subfolders[0]))
     if 'Thumbs.db' in folder_content: folder_content.remove('Thumbs.db')
     folder_content.sort()
-    name_shape=os.listdir(os.path.join(folder,subfolders[0]))[imgNumber]
+    name_shape=folder_content[imgNumber]
     test=os.path.join(testfolder,name_shape)
     im_old=io.imread(test)
     shape = im_old.shape

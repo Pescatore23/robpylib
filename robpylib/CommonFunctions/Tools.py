@@ -5,13 +5,13 @@ Created on Mon Feb 18 14:32:41 2019
 @author: firo
 """
 import numpy as np
-import skimage.morphology
+# import skimage.morphology
 from scipy import ndimage as ndi
-import os
-from skimage import measure
-import matplotlib.pyplot as plt
-plt.ioff()
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+# import os
+# from skimage import measure
+# import matplotlib.pyplot as plt
+# plt.ioff()
+# from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from scipy.interpolate import interp1d
 
 def low_pass_rule(x,freq,band):
@@ -105,53 +105,53 @@ def cylinder_coords(x, y, x0=0, y0=0):
 
 
 
-def rendering(threshold, transitions, name, outfolder, label = False, pore_object = False):
-#    for now, only works with matplotlib 3.0.3
-    t = threshold
-    if np.any(transitions==t):
-        if not os.path.exists(os.path.join(outfolder, ''.join([str(name),'.png']))):
+# def rendering(threshold, transitions, name, outfolder, label = False, pore_object = False):
+# #    for now, only works with matplotlib 3.0.3
+#     t = threshold
+#     if np.any(transitions==t):
+#         if not os.path.exists(os.path.join(outfolder, ''.join([str(name),'.png']))):
             
-            Shape = transitions.shape
+#             Shape = transitions.shape
             
-            fig = plt.figure(frameon=False)
-            ax = fig.add_subplot(111, projection='3d')
+#             fig = plt.figure(frameon=False)
+#             ax = fig.add_subplot(111, projection='3d')
         
-            dx=dy=dz=1
-            ax.set_xlim(0, Shape[1]*dy)
-            ax.set_ylim(0, Shape[0]*dx)
-            ax.set_zlim(0, Shape[2]*dz)
+#             dx=dy=dz=1
+#             ax.set_xlim(0, Shape[1]*dy)
+#             ax.set_ylim(0, Shape[0]*dx)
+#             ax.set_zlim(0, Shape[2]*dz)
             
-            ax.set_xticks([])
-            ax.set_yticks([])
-            ax.set_zticks([])
-            ax.set_aspect(np.int16(Shape[2]/Shape[0]))
+#             ax.set_xticks([])
+#             ax.set_yticks([])
+#             ax.set_zticks([])
+#             ax.set_aspect(np.int16(Shape[2]/Shape[0]))
         
-            Stack = (transitions < t + 1 ).astype(np.uint8)*255
-            Stack[transitions==0] = 0
+#             Stack = (transitions < t + 1 ).astype(np.uint8)*255
+#             Stack[transitions==0] = 0
             
-            if label:
-                Stack2 = Stack*pore_object
-                Stack[pore_object] = 0
+#             if label:
+#                 Stack2 = Stack*pore_object
+#                 Stack[pore_object] = 0
         
-            if Stack.max() > 0:
-                verts, faces, _, _ = measure.marching_cubes_lewiner(Stack,100,(1,1,1),step_size=1)
-                mesh1 = Poly3DCollection(verts[faces],alpha=1, edgecolor='#27408B',linewidth = 0.001)
-                mesh1.set_facecolor('#3A5FCD')
-                ax.add_collection3d(mesh1)
+#             if Stack.max() > 0:
+#                 verts, faces, _, _ = measure.marching_cubes_lewiner(Stack,100,(1,1,1),step_size=1)
+#                 mesh1 = Poly3DCollection(verts[faces],alpha=1, edgecolor='#27408B',linewidth = 0.001)
+#                 mesh1.set_facecolor('#3A5FCD')
+#                 ax.add_collection3d(mesh1)
            
-            if label:
-                if Stack2.max() > 0:
-                    verts, faces, _, _ = measure.marching_cubes_lewiner(Stack2,100,(1,1,1),step_size=1)
-                    mesh2 = Poly3DCollection(verts[faces],alpha=1, edgecolor='#8B0000',linewidth = 0.001)
-                    mesh2.set_facecolor('#CD0000')
-                    ax.add_collection3d(mesh2)
+#             if label:
+#                 if Stack2.max() > 0:
+#                     verts, faces, _, _ = measure.marching_cubes_lewiner(Stack2,100,(1,1,1),step_size=1)
+#                     mesh2 = Poly3DCollection(verts[faces],alpha=1, edgecolor='#8B0000',linewidth = 0.001)
+#                     mesh2.set_facecolor('#CD0000')
+#                     ax.add_collection3d(mesh2)
                 
                 
-            ax.view_init(-10, 45)
-            fig.savefig(''.join([outfolder,"/",str(name),'.png']), format='png', dpi=600, transparent=True, facecolor='w', edgecolor='w', bbox_inches='tight')
-            fig.clf()
-            ax.cla()
-            plt.close(fig)
+#             ax.view_init(-10, 45)
+#             fig.savefig(''.join([outfolder,"/",str(name),'.png']), format='png', dpi=600, transparent=True, facecolor='w', edgecolor='w', bbox_inches='tight')
+#             fig.clf()
+#             ax.cla()
+#             plt.close(fig)
             
             
             

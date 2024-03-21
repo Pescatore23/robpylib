@@ -170,3 +170,21 @@ def lorentz_FWHM(gamma, x0):
     FWHM = np.sqrt(x0**2+gamma*x0)-np.sqrt(x0**2-gamma*x0)
     return FWHM
 
+def Magnus_Roche(T):
+    """
+    Magnus Roche approximation for saturated vapor pressure
+
+    Parameters
+    ----------
+    T : value
+        Temperature in °C
+
+    Returns
+    -------
+    p_vap: float
+        Vapor pressure in Pa
+
+    """
+    p_vap = 610.94*np.exp(17.625*T/(T+243.04))
+    return p_vap
+
