@@ -421,11 +421,11 @@ def load_nanotom(path, pcrSizeX = 0, pcrSizeY = 0, pcrSizeZ = 0):
                 
             for line in lines:
                 splitline = line.split('=')
-                if splitline[0] == 'ROI_SizeX':
+                if splitline[0] == 'Volume_SizeX':
                     pcrSizeX = int(splitline[1])
-                if splitline[0] == 'ROI_SizeY':
+                if splitline[0] == 'Volume_SizeY':
                     pcrSizeY = int(splitline[1])
-                if splitline[0] == 'ROI_SizeZ':
+                if splitline[0] == 'Volume_SizeZ':
                     pcrSizeZ = int(splitline[1])
                     
     else:
